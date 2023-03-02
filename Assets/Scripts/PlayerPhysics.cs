@@ -11,7 +11,6 @@ public class PlayerPhysics : MonoBehaviour
 
     [Header("Dash")]
     [SerializeField] private float _dashPower = 50;
-    [SerializeField] private float _dashCompletingTime = 0.3f;
     [SerializeField] private float _dashReloadingTime = 3;
 
     [Header("Jump")]
@@ -24,7 +23,6 @@ public class PlayerPhysics : MonoBehaviour
     
     private WaitForSeconds _completingDashDelay;
     private Coroutine _dashCompletingCoroutine;
-
     private WaitForSeconds _reloadingDashDelay;
     private Coroutine _dashReloadingCoroutine;
 
@@ -33,7 +31,7 @@ public class PlayerPhysics : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _completingDashDelay = new WaitForSeconds(_dashCompletingTime);
+        _completingDashDelay = new WaitForSeconds(Time.timeScale);
         _reloadingDashDelay = new WaitForSeconds(_dashReloadingTime);
     }
 
@@ -72,10 +70,10 @@ public class PlayerPhysics : MonoBehaviour
 
     public void TryMove(Vector2 direction)
     {
-        if (_rigidbody.velocity == Vector2.zero && direction == Vector2.zero)
+        if (_dashCompletingCoroutine != null)
             return;
 
-        if (_dashCompletingCoroutine != null)
+        if (_rigidbody.velocity.x == 0 && direction == Vector2.zero)
             return;
 
         _rigidbody.velocity = new Vector2(direction.x * _speed, _rigidbody.velocity.y);
