@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     private void OnJumpKeyPressed()
     {
         _physics.TryJump();
+        print("Jump");
     }
 
     private void OnDashKeyPressed()
