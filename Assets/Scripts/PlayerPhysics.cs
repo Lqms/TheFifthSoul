@@ -12,32 +12,33 @@ public class PlayerPhysics : MonoBehaviour
     [Header("Dash")]
     [SerializeField] private float _dashPower = 50;
     [SerializeField] private float _dashReloadingTime = 3;
+    [SerializeField] private float _dashCompletingTime = 0.2f;
 
     [Header("Jump")]
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _legs;
     [SerializeField] private float _jumpPower = 5;
-    [SerializeField] private float _legsRadius = 1;
+    [SerializeField] private float _legsRadius = 0.2f;
  
-    private Rigidbody2D _rigidbody;
+    public Rigidbody2D Rigidbody { get; private set; }
     
-    private WaitForSeconds _completingDashDelay;
     private Coroutine _dashCompletingCoroutine;
-    private WaitForSeconds _reloadingDashDelay;
     private Coroutine _dashReloadingCoroutine;
+    private WaitForSeconds _completingDashDelay;
+    private WaitForSeconds _reloadingDashDelay;
 
-    public bool CanJump { get; private set; }
+    public bool OnGround { get; private set; }
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _completingDashDelay = new WaitForSeconds(Time.timeScale);
+        Rigidbody = GetComponent<Rigidbody2D>();
+        _completingDashDelay = new WaitForSeconds(_dashCompletingTime);
         _reloadingDashDelay = new WaitForSeconds(_dashReloadingTime);
     }
 
     private void FixedUpdate()
     {
-        CanJump = CheckJumpingPossibility();
+        OnGround = CheckJumpingPossibility();
     }
 
     private bool CheckJumpingPossibility()
@@ -62,21 +63,21 @@ public class PlayerPhysics : MonoBehaviour
 
     public void TryJump()
     {
-        if (CanJump == false)
+        if (OnGround == false)
             return;
 
-        _rigidbody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+        Rigidbody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
     }
 
-    public void TryMove(Vector2 direction)
+    public void TryMove(Vector2Int direction)
     {
         if (_dashCompletingCoroutine != null)
             return;
 
-        if (_rigidbody.velocity.x == 0 && direction == Vector2.zero)
+        if (Rigidbody.velocity.x == 0 && direction == Vector2.zero)
             return;
 
-        _rigidbody.velocity = new Vector2(direction.x * _speed, _rigidbody.velocity.y);
+        Rigidbody.velocity = new Vector2(direction.x * _speed, Rigidbody.velocity.y);
     }
 
     public void TryDash(Vector2 direction)
@@ -87,7 +88,7 @@ public class PlayerPhysics : MonoBehaviour
         if (_dashCompletingCoroutine != null)
             StopCoroutine(_dashCompletingCoroutine);
 
-        _rigidbody.AddForce(direction * _dashPower, ForceMode2D.Impulse);
+        Rigidbody.AddForce(direction * _dashPower, ForceMode2D.Impulse);
 
         _dashCompletingCoroutine = StartCoroutine(DashCompleting());
         _dashReloadingCoroutine = StartCoroutine(DashReloading());

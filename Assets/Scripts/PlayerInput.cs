@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
 
-    public static event UnityAction<Vector2> MoveKeyPressing;
+    public static event UnityAction<Vector2Int> MoveKeyPressing;
     public static event UnityAction DashKeyPressed;
     public static event UnityAction JumpKeyPressed;
     public static event UnityAction InteractKeyPressed;
@@ -54,16 +54,16 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckMoveKeys()
     {
-        Vector2 direction = Vector2.zero;
+        Vector2Int direction = Vector2Int.zero;
 
         if (Input.GetKey(_moveLeftKey))
         {
-            direction += Vector2.left;
+            direction += Vector2Int.left;
         }
 
         if (Input.GetKey(_moveRightKey))
         {
-            direction += Vector2.right;
+            direction += Vector2Int.right;
         }
 
         MoveKeyPressing?.Invoke(direction);

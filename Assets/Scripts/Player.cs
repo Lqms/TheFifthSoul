@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerPhysics _physics;
+    [SerializeField] private PlayerAnimator _animator;
 
     private Vector3 _lookDirection;
 
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
         _physics.TryDash(_lookDirection);
     }
 
-    private void OnMoveKeyPressing(Vector2 direction)
+    private void OnMoveKeyPressing(Vector2Int direction)
     {
         TryChangeDirection(direction);
         _physics.TryMove(direction);
