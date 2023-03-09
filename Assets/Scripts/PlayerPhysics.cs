@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerPhysics : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimator _animator;
+
     [Header("Movement")]
     [SerializeField] private float _speed = 5;
 
@@ -19,15 +21,13 @@ public class PlayerPhysics : MonoBehaviour
     [SerializeField] private Transform _legs;
     [SerializeField] private float _jumpPower = 5;
     [SerializeField] private float _legsRadius = 0.2f;
- 
-    public Rigidbody2D Rigidbody { get; private set; }
     
     private Coroutine _dashCompletingCoroutine;
     private Coroutine _dashReloadingCoroutine;
     private WaitForSeconds _completingDashDelay;
     private WaitForSeconds _reloadingDashDelay;
 
-    public bool OnGround { get; private set; }
+    public Rigidbody2D Rigidbody { get; private set; }
 
     private void Start()
     {
@@ -36,9 +36,9 @@ public class PlayerPhysics : MonoBehaviour
         _reloadingDashDelay = new WaitForSeconds(_dashReloadingTime);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        OnGround = CheckJumpingPossibility();
+        print(Rigidbody.velocity.y);
     }
 
     private bool CheckJumpingPossibility()
@@ -63,10 +63,11 @@ public class PlayerPhysics : MonoBehaviour
 
     public void TryJump()
     {
-        if (OnGround == false)
+        if (CheckJumpingPossibility() == false)
             return;
 
         Rigidbody.AddForce(Vector2.up * _jumpPower, ForceMode2D.Impulse);
+        _animator.TurnOnTrigger("Jump");
     }
 
     public void TryMove(Vector2Int direction)
@@ -89,6 +90,7 @@ public class PlayerPhysics : MonoBehaviour
             StopCoroutine(_dashCompletingCoroutine);
 
         Rigidbody.AddForce(direction * _dashPower, ForceMode2D.Impulse);
+        _animator.TurnOnTrigger("Dash");
 
         _dashCompletingCoroutine = StartCoroutine(DashCompleting());
         _dashReloadingCoroutine = StartCoroutine(DashReloading());

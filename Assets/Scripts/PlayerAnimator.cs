@@ -17,7 +17,11 @@ public class PlayerAnimator : MonoBehaviour
     private void Update()
     {
         _animator.SetFloat("VelocityX", Mathf.Abs(_physics.Rigidbody.velocity.x));
-        _animator.SetFloat("VelocityY", Mathf.Abs(_physics.Rigidbody.velocity.y));
-        _animator.SetBool("OnGround", _physics.OnGround);
+        _animator.SetFloat("VelocityY", _physics.Rigidbody.velocity.y);
+    }
+
+    public void TurnOnTrigger(string triggerName)
+    {
+        _animator.SetTrigger(triggerName);
     }
 }
