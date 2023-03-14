@@ -10,11 +10,13 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private KeyCode _dashKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
+    [SerializeField] private KeyCode _sprinktKey = KeyCode.LeftControl;
 
     public static event UnityAction<Vector2Int> MoveKeyPressing;
     public static event UnityAction DashKeyPressed;
     public static event UnityAction JumpKeyPressed;
     public static event UnityAction InteractKeyPressed;
+    public static event UnityAction<bool> SprintKeyPressed;
 
     private void FixedUpdate()
     {
@@ -26,6 +28,7 @@ public class PlayerInput : MonoBehaviour
         CheckDashKey();
         CheckJumpKey();
         CheckInteractKey();
+        CheckSprintKey();
     }
 
     private void CheckJumpKey()
@@ -41,6 +44,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(_dashKey))
         {
             DashKeyPressed?.Invoke();
+        }
+    }
+
+    private void CheckSprintKey()
+    {
+        if (Input.GetKeyDown(_sprinktKey))
+        {
+            SprintKeyPressed?.Invoke(true);
+        }
+
+        if (Input.GetKeyUp(_sprinktKey))
+        {
+            SprintKeyPressed?.Invoke(false);
         }
     }
 
@@ -60,8 +76,7 @@ public class PlayerInput : MonoBehaviour
         {
             direction += Vector2Int.left;
         }
-
-        if (Input.GetKey(_moveRightKey))
+        else if (Input.GetKey(_moveRightKey))
         {
             direction += Vector2Int.right;
         }
