@@ -11,12 +11,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
     [SerializeField] private KeyCode _sprinktKey = KeyCode.LeftControl;
+    [SerializeField] private KeyCode _attackKey = KeyCode.Mouse0;
 
     public static event UnityAction<Vector2Int> MoveKeyPressing;
     public static event UnityAction DashKeyPressed;
     public static event UnityAction JumpKeyPressed;
     public static event UnityAction InteractKeyPressed;
     public static event UnityAction<bool> SprintKeyPressed;
+    public static event UnityAction AttackKeyPressed;
 
     private void FixedUpdate()
     {
@@ -29,6 +31,15 @@ public class PlayerInput : MonoBehaviour
         CheckJumpKey();
         CheckInteractKey();
         CheckSprintKey();
+        CheckAttackKey();
+    }
+
+    private void CheckAttackKey()
+    {
+        if (Input.GetKeyDown(_attackKey))
+        {
+            AttackKeyPressed?.Invoke();
+        }
     }
 
     private void CheckJumpKey()

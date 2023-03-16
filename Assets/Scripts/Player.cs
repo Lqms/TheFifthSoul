@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private PlayerAnimator _animator;
+    [SerializeField] private PlayerCombat _combat;
 
     private Vector3 _lookDirection;
 
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
         PlayerInput.DashKeyPressed += OnDashKeyPressed;
         PlayerInput.JumpKeyPressed += OnJumpKeyPressed;
         PlayerInput.SprintKeyPressed += OnSprintKeyPressed;
+        PlayerInput.AttackKeyPressed += OnAttackKeyPressed;
     }
 
     private void OnDisable()
@@ -23,6 +26,13 @@ public class Player : MonoBehaviour
         PlayerInput.DashKeyPressed -= OnDashKeyPressed;
         PlayerInput.JumpKeyPressed -= OnJumpKeyPressed;
         PlayerInput.SprintKeyPressed -= OnSprintKeyPressed;
+        PlayerInput.AttackKeyPressed -= OnAttackKeyPressed;
+    }
+
+    private void OnAttackKeyPressed()
+    {
+        _combat.Attack();
+        _animator.TurnOnTrigger("Attack");
     }
 
     private void OnSprintKeyPressed(bool isKeyDown)
@@ -52,7 +62,7 @@ public class Player : MonoBehaviour
         if (direction != Vector2.zero)
         {
             _lookDirection = direction;
-            _animator.FlipSpriteX(direction == Vector2.left);
+            transform.localScale = new Vector3(_lookDirection.x, transform.localScale.y, transform.localScale.y);
         }
     }
 }

@@ -8,13 +8,17 @@ public class PlayerAnimator : MonoBehaviour
 {
     [SerializeField] private PlayerPhysics _physics;
     [SerializeField] private SpriteRenderer _emptySprite;
+    [SerializeField] private float _ghostSpawnDelay = 0.05f;
+    [SerializeField] private float _ghostDelayMultiplier = 4f;
 
+    private float _ghostDeSpawnDelay;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
     private Coroutine _sprintingCoroutine;
 
     private void Start()
     {
+        _ghostDeSpawnDelay = _ghostSpawnDelay * _ghostDelayMultiplier;
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -50,13 +54,8 @@ public class PlayerAnimator : MonoBehaviour
             emptySprite.sprite = _spriteRenderer.sprite;
             emptySprite.flipX = _spriteRenderer.flipX;
             emptySprite.color = new Color(1, 1, 1, 0.3f);
-            Destroy(emptySprite.gameObject, 0.4f);
-            yield return new WaitForSeconds(0.1f);
+            Destroy(emptySprite.gameObject, _ghostDeSpawnDelay);
+            yield return new WaitForSeconds(_ghostSpawnDelay);
         }
-    }
-
-    public void FlipSpriteX(bool state)
-    {
-        _spriteRenderer.flipX = state;
     }
 }
