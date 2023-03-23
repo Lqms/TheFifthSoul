@@ -31,8 +31,8 @@ public class Player : MonoBehaviour
 
     private void OnAttackKeyPressed()
     {
-        _combat.Attack();
         _animator.TurnOnTrigger("Attack");
+        _combat.Attack();
     }
 
     private void OnSprintKeyPressed(bool isKeyDown)

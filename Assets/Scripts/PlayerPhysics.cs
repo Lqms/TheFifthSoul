@@ -38,7 +38,7 @@ public class PlayerPhysics : MonoBehaviour
 
     private void Update()
     {
-        print(Rigidbody.velocity.y);
+        print(Rigidbody.velocity.x);
     }
 
     private bool CheckJumpingPossibility()

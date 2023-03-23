@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a392005b2daf432488301a652654a98d
+guid: 08cf4a701c27bd74694619945c815b7e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,127 +117,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: _Attack2NoMovement_0
+      name: _FIREAttack2NoMovement_0
       rect:
         serializedVersion: 2
-        x: 31
+        x: 28
         y: 0
-        width: 36
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 99
+        height: 48
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e42987734381581459c2ee7a718605ea
-      internalID: -907236204
+      spriteID: 818c921e1be153d4393d03df91589c0a
+      internalID: 314399159
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Attack2NoMovement_1
+      name: _FIREAttack2NoMovement_1
       rect:
         serializedVersion: 2
-        x: 147
+        x: 148
         y: 0
-        width: 40
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 93
+        height: 48
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e18b1e79e181f4a41b6b451938994638
-      internalID: 1640804726
+      spriteID: 23eb3c6088aeb1d42b68d00ab871adf3
+      internalID: -269161213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Attack2NoMovement_2
+      name: _FIREAttack2NoMovement_2
       rect:
         serializedVersion: 2
         x: 268
         y: 0
-        width: 75
-        height: 40
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 92
+        height: 49
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6053a96cbe0def40a3047672d307859
-      internalID: 638645701
+      spriteID: 4f5b182cf0426c54db4fe4653194f7b7
+      internalID: -795696583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Attack2NoMovement_3
+      name: _FIREAttack2NoMovement_3
       rect:
         serializedVersion: 2
         x: 385
         y: 0
-        width: 62
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 96
+        height: 48
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc157468e59b6334e94a1e8e97e2b072
-      internalID: -370766974
+      spriteID: 13f596655159faa43a1d02f79aa3e933
+      internalID: -1808623034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Attack2NoMovement_4
+      name: _FIREAttack2NoMovement_4
       rect:
         serializedVersion: 2
-        x: 505
+        x: 501
         y: 0
-        width: 44
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 98
+        height: 48
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e4d4ed6b57228c46bf88291175054a2
-      internalID: -1638318735
+      spriteID: f1eb9b487fc738a48be89967039efcc7
+      internalID: 2045576204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: _Attack2NoMovement_5
+      name: _FIREAttack2NoMovement_5
       rect:
         serializedVersion: 2
-        x: 625
+        x: 623
         y: 0
-        width: 43
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 97
+        height: 48
+      alignment: 9
+      pivot: {x: 0.3, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e589ad25123a6a499c799b198ee54e5
-      internalID: -847763952
+      spriteID: 53376459adddf554494835e34550b1ca
+      internalID: 1655852139
       vertices: []
       indices: 
       edges: []
@@ -253,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      _Attack2NoMovement_3: -370766974
-      _Attack2NoMovement_5: -847763952
-      _Attack2NoMovement_2: 638645701
-      _Attack2NoMovement_4: -1638318735
-      _Attack2NoMovement_0: -907236204
-      _Attack2NoMovement_1: 1640804726
+      _FIREAttack2NoMovement_5: 1655852139
+      _FIREAttack2NoMovement_2: -795696583
+      _FIREAttack2NoMovement_1: -269161213
+      _FIREAttack2NoMovement_0: 314399159
+      _FIREAttack2NoMovement_4: 2045576204
+      _FIREAttack2NoMovement_3: -1808623034
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
