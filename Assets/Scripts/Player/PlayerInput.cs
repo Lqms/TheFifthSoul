@@ -54,18 +54,14 @@ public class PlayerInput : MonoBehaviour
 
     private void CheckMoveKeys()
     {
-        Vector2Int direction = Vector2Int.zero;
-
         if (Input.GetKey(_moveLeftKey))
         {
-            direction += Vector2Int.left;
+            MoveKeyPressing?.Invoke(Vector2Int.left);
         }
 
         if (Input.GetKey(_moveRightKey))
         {
-            direction += Vector2Int.right;
+            MoveKeyPressing?.Invoke(Vector2Int.right);
         }
-
-        MoveKeyPressing?.Invoke(direction);
     }
 }
